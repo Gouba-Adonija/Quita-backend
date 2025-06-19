@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 
@@ -67,7 +67,8 @@ router.post("/login", async (req, res) => {
     // Envoyer le token dans un cookie
     res.cookie("auth_token", token, {
       httpOnly: true, // Le cookie est uniquement accessible via HTTP (sécurise le cookie contre l'accès via JavaScript)
-      secure: process.env.NODE_ENV === "production", // Assurez-vous que ce cookie est seulement envoyé via HTTPS en production
+      // secure: process.env.NODE_ENV === 'production',
+      secure: false,
       maxAge: 24 * 60 * 60 * 1000, // Durée de vie du cookie (ici 24 heures)
       sameSite: "Strict", // Empêche les attaques CSRF
     });

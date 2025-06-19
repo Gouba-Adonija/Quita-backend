@@ -4,9 +4,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import fs from "fs";
+// import multer from "multer";
 import "dotenv/config";
 import { villesRouter } from "./routes/villes.js";
 import { uploadRouter } from "./routes/upload.js";
+import { composantsRouter } from "./routes/composants.js";
 import { authRouter } from "./routes/auth.js";
 import { apiRouter } from "./routes/api.js";
 
@@ -40,11 +42,9 @@ for (const dir of uploadDirs) {
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes API
-// app.use("api/actualites", actualitesRouter);
-// app.use("api/contact", contactRouter);
-// app.use("api/actualites", contactRouter);
 app.use("/api/villes", villesRouter);
 app.use("/api/upload", uploadRouter);
+app.use("/api/composants", composantsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api", apiRouter);
 
